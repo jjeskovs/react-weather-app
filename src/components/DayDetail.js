@@ -16,7 +16,7 @@ const DayDetails = props => {
     return (
         <CardWrapper>
             <CardBody>
-                <h2>Detailed Forecast for {props.day}:</h2>
+                <h2>Forecast Details for {props.day}:</h2>
                 <h3><strong>{props.current.toFixed(1)}°</strong></h3>
                 <p><img src={`${process.env.PUBLIC_URL}/icons/${props.icon}.png`} alt={props.description} /></p>
                 <p><strong>High:</strong> {props.high.toFixed(1)}° / <strong>Feels Like:</strong> {props.apparentHigh.toFixed(1)}°</p>

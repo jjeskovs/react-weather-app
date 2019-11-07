@@ -5,7 +5,7 @@ import { Card, CardBody } from "reactstrap";
 const outline = `2px solid #17a2b8`;
 const CardWrapper = styled(Card)`
     border: ${outline};
-    margin-top: 1em;
+    margin: 1em 0;
     text-align: center;
     h3 {
         font-size: 2.5rem;

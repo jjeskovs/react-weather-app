@@ -38,7 +38,7 @@ const App = () => {
         location: "",
         days: []
     });
-    const {searchTerm, selectedDay, location, days} = data;
+    const { searchTerm, selectedDay, location, days } = data;
 
     // FOR EXAMPLE:
     // the variable 'day' is the value stored in state; its initial value is "Friday", and to 
@@ -77,8 +77,8 @@ const App = () => {
                             days: res.data.data
                         });
                     } else {
-                        setData({ 
-                            ...data, 
+                        setData({
+                            ...data,
                             searchTerm: "",
                             selectedDay: null
                         });
@@ -100,55 +100,66 @@ const App = () => {
     // since we're in a function and not a class, there's no need to wrap in a 'render()' lifecycle method!
     return (
         <Wrapper>
-            <Row>
-                <Col md={7}>
-                    <h1>Weather for {location}</h1>
-                </Col>
-                <Col md={5}>
-                    <SearchBar
-                        searchTerm={searchTerm}
-                        handleInputChange={handleInputChange}
-                        handleFormSubmit={handleFormSubmit}
-                    />
-                </Col>
-            </Row>
-            <Row>
-                {days.map(day => (
-                    <DayCard
-                        key={day.ts}
-                        day={moment(day.valid_date, "YYYY-MM-DD").format("dddd")}
-                        current={day.temp}
-                        high={day.max_temp}
-                        low={day.min_temp}
-                        precip={day.pop}
-                        icon={day.weather.icon}
-                        description={day.weather.description}
-                        selectDay={() => setData({ ...data, selectedDay: day })}
-                        isActive={day === selectedDay}
-                    />
-                ))}
-            </Row>
-            <Row>
-                <Col>
-                    {selectedDay ? (
-                        <DayDetail
-                            day={moment(selectedDay.valid_date, "YYYY-MM-DD").format("dddd, MMMM Do, YYYY")}
-                            current={selectedDay.temp}
-                            high={selectedDay.max_temp}
-                            apparentHigh={selectedDay.app_max_temp}
-                            low={selectedDay.min_temp}
-                            apparentLow={selectedDay.app_min_temp}
-                            precip={selectedDay.pop}
-                            icon={selectedDay.weather.icon}
-                            windSpeed={selectedDay.wind_spd}
-                            windDirection={selectedDay.wind_cdir_full}
-                            description={selectedDay.weather.description}
-                        />
-                    ) : (
-                        <h2>Select a day above to get details!</h2>
-                    )}
-                </Col>
-            </Row>
+            {!days.length ? (
+                <div style={{padding: "20% 50%",
+                    margin: -8,
+                    width: 16,
+                    height: 16}}>
+                    <i className="fa fa-spinner fa-spin fa-3x" aria-hidden="true" />
+                </div>
+            ) : (
+                <>
+                    <Row>
+                        <Col md={7}>
+                            <h1>Weather for {location}</h1>
+                        </Col>
+                        <Col md={5}>
+                            <SearchBar
+                                searchTerm={searchTerm}
+                                handleInputChange={handleInputChange}
+                                handleFormSubmit={handleFormSubmit}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        {days.map(day => (
+                            <DayCard
+                                key={day.ts}
+                                day={moment(day.valid_date, "YYYY-MM-DD").format("dddd")}
+                                current={day.temp}
+                                high={day.max_temp}
+                                low={day.min_temp}
+                                precip={day.pop}
+                                icon={day.weather.icon}
+                                description={day.weather.description}
+                                selectDay={() => setData({ ...data, selectedDay: day })}
+                                isActive={day === selectedDay}
+                            />
+                        ))}
+                    </Row>
+                    <Row>
+                        <Col>
+                            {selectedDay ? (
+                                <DayDetail
+                                    day={moment(selectedDay.valid_date, "YYYY-MM-DD").format("dddd, MMMM Do, YYYY")}
+                                    current={selectedDay.temp}
+                                    high={selectedDay.max_temp}
+                                    apparentHigh={selectedDay.app_max_temp}
+                                    low={selectedDay.min_temp}
+                                    apparentLow={selectedDay.app_min_temp}
+                                    precip={selectedDay.pop}
+                                    icon={selectedDay.weather.icon}
+                                    windSpeed={selectedDay.wind_spd}
+                                    windDirection={selectedDay.wind_cdir_full}
+                                    description={selectedDay.weather.description}
+                                />
+                            ) : (
+                                    <h2>Select a day above to get details!</h2>
+                                )}
+                            </Col>
+                        </Row>
+                    </>
+                )}
         </Wrapper>
     );
 }

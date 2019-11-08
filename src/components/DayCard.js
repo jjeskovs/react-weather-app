@@ -21,6 +21,7 @@ const Wrapper = styled.div`
     .card-header {
         background: ${props => props.isActive ? teal : null};
         border-bottom: ${props => props.isActive ? outline : null};
+        border-bottom-width: 2px;
         color: ${props => props.isActive ? "white" : null};
     }
     img {

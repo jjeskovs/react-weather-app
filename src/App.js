@@ -53,6 +53,15 @@ const App = () => {
         getWeather("Denver, CO");
     }, []);
 
+    // here we use 'useEffect' again (it's fairly common to have multipe useEffect blocks
+    // when you want each separate instance to be triggered at different times in the lifecycle)...
+    // in this case, we are setting the document's title on initial render AND anytime the state
+    // value of 'location' changes... the array following the anonymous function (the dependency
+    // or 'deps' array) specifies which values should trigger the effect upon change
+    useEffect(() => {
+        document.title = `This week's weather ${location ? "for " + location : ""}`;
+    }, [location])
+
     // since these functions are built inside a function-based (dumb) component, we typically create
     // them as const function expressions, like we have here
     const getWeather = address => {
@@ -68,7 +77,11 @@ const App = () => {
                             days: res.data.data
                         });
                     } else {
-                        setData({ ...data, searchTerm: "" });
+                        setData({ 
+                            ...data, 
+                            searchTerm: "",
+                            selectedDay: null
+                        });
                     }
                 })
                 .catch(err => console.log(err));

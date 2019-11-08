@@ -1,22 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-
-const SearchForm = styled(Form)`
-    justify-content: flex-end;
-    margin-top: 1em;
-    input.form-control {
-        border-radius: .25rem 0 0 .25rem;
-        width: 325px;
-    }
-    button {
-        border-radius: 0 .25rem .25rem 0;
-    }
-`
+import { FormGroup, Label, Input, Button } from "reactstrap";
+import { FormWrapper } from "../styles";
 
 const SearchBar = props => {
     return (
-        <SearchForm inline onSubmit={props.handleFormSubmit}>
+        <FormWrapper inline onSubmit={props.handleFormSubmit}>
             <FormGroup>
                 <Label for="search" hidden>Search by Location</Label>
                 <Input 
@@ -29,7 +17,7 @@ const SearchBar = props => {
                 />
             </FormGroup>
             <Button color="info" onClick={props.handleFormSubmit}>Search</Button>
-        </SearchForm>
+        </FormWrapper>
     )
 }
 

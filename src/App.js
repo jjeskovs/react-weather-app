@@ -1,22 +1,13 @@
 // here we destructure useState and useEffect from React to give us state/lifecycle functionality!
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import moment from "moment";
-import { Container, Row, Col } from "reactstrap";
-// import sampleData from "./data/sample.json"; // only used initially until we wire up with the API
+import { Row, Col } from "reactstrap";
+import { Wrapper } from "./styles";
 import API from "./utils/API";
 import SearchBar from "./components/SearchBar";
 import DayCard from "./components/DayCard";
 import DayDetail from "./components/DayDetail";
-
-const Wrapper = styled(Container)`
-    .row:first-child {
-        margin: 1.5em -15px;
-    }
-    .col > h2 {
-        margin-top: 1em;
-    }
-`
+// import sampleData from "./data/sample.json"; // only used initially until we wire up with the API
 
 const App = () => {
     // the following variable (data) instantiates four values in state using Hooks... note the 

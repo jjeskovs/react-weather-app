@@ -1,25 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { Card, CardBody } from "reactstrap";
-
-const outline = `2px solid #17a2b8`;
-const CardWrapper = styled(Card)`
-    border: ${outline};
-    margin: 1em 0;
-    text-align: center;
-    h3 {
-        font-size: 2.5rem;
-        font-weight: 500;
-        margin-top: .5em;
-    }
-    h4 {
-        padding-bottom: 1em;
-    }
-`
+import { CardBody } from "reactstrap";
+import { DetailsWrapper } from "../styles";
 
 const DayDetails = props => {
     return (
-        <CardWrapper>
+        <DetailsWrapper>
             <CardBody>
                 <h2>Weather Details for {props.date} in {props.location}</h2>
                 <h3><strong>{props.current.toFixed(1)}°</strong></h3>
@@ -31,7 +16,7 @@ const DayDetails = props => {
                 <p><strong>Wind Speed:</strong> {props.windSpeed}</p>
                 <p><strong>Wind Direction:</strong> {props.windDirection[0].toUpperCase() + props.windDirection.substring(1)}</p>
             </CardBody>
-        </CardWrapper>    
+        </DetailsWrapper>    
     )
 }
 

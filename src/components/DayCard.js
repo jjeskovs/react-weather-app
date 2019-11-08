@@ -1,41 +1,11 @@
 import React from "react";
-import styled from "styled-components";
 import { Col, Card, CardHeader, CardBody } from "reactstrap";
-
-const teal = "#17a2b8";
-const outline = `2px solid ${teal}`;
-const Wrapper = styled.div`
-    cursor: pointer;
-    .card {
-        border-width: 2px;
-    }
-    &:hover {
-        .card {
-            border: ${outline};
-        }
-    }
-    .card {
-        border: ${props => props.isActive ? outline : null};
-        text-align: center;
-    }
-    .card-header {
-        background: ${props => props.isActive ? teal : null};
-        border-bottom: ${props => props.isActive ? outline : null};
-        border-bottom-width: 2px;
-        color: ${props => props.isActive ? "white" : null};
-        font-weight: ${props => props.isActive ? 700 : null};
-        padding: .75rem 1rem;
-    }
-    img {
-        width: 75px;
-    }
-`
-
+import { DayWrapper } from "../styles";
 
 const DayCard = props => {
     return (
         <Col onClick={props.selectDay}>
-            <Wrapper isActive={props.isActive}>
+            <DayWrapper isActive={props.isActive}>
                 <Card>
                     <CardHeader>{props.day}</CardHeader>
                     <CardBody>
@@ -45,7 +15,7 @@ const DayCard = props => {
                         <p><strong>Low:</strong> {props.low.toFixed(1)}°</p>
                     </CardBody>
                 </Card>
-            </Wrapper>
+            </DayWrapper>
         </Col>
     )
 }

@@ -85,6 +85,8 @@ const App = () => {
                     }
                 })
                 .catch(err => console.log(err));
+        } else {
+            alert("Search a location to get this week's weather data!");
         }
     }
 
@@ -101,10 +103,7 @@ const App = () => {
     return (
         <Wrapper>
             {!days.length ? (
-                <div style={{padding: "20% 50%",
-                    margin: -8,
-                    width: 16,
-                    height: 16}}>
+                <div style={{ padding: "20% 50%", margin: -8, width: 16, height: 16 }}>
                     <i className="fa fa-spinner fa-spin fa-3x" aria-hidden="true" />
                 </div>
             ) : (
@@ -141,7 +140,8 @@ const App = () => {
                         <Col>
                             {selectedDay ? (
                                 <DayDetail
-                                    day={moment(selectedDay.valid_date, "YYYY-MM-DD").format("dddd, MMMM Do, YYYY")}
+                                    date={moment(selectedDay.valid_date, "YYYY-MM-DD").format("dddd, MMMM Do, YYYY")}
+                                    location={location}
                                     current={selectedDay.temp}
                                     high={selectedDay.max_temp}
                                     apparentHigh={selectedDay.app_max_temp}
@@ -154,8 +154,8 @@ const App = () => {
                                     description={selectedDay.weather.description}
                                 />
                             ) : (
-                                    <h2>Select a day above to get details!</h2>
-                                )}
+                                <h2>Select a day above to get details!</h2>
+                            )}
                             </Col>
                         </Row>
                     </>

@@ -23,6 +23,8 @@ const Wrapper = styled.div`
         border-bottom: ${props => props.isActive ? outline : null};
         border-bottom-width: 2px;
         color: ${props => props.isActive ? "white" : null};
+        font-weight: ${props => props.isActive ? 700 : null};
+        padding: .75rem 1rem;
     }
     img {
         width: 75px;
